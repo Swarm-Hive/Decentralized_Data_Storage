@@ -1,0 +1,8 @@
+# ignore system files
+.DS_Store
+
+# ignore node_modules at any level
+**/node_modules
+
+# ignore abis generated at any level
+**/abis
