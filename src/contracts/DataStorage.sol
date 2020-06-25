@@ -5,7 +5,7 @@ contract DataStorage {
     string public dappName;         // name of dapp
     uint256 public contractVersion = 1; // contract version
     uint256 public dataIndex = 0;       // index of data
-    uint256 public currentTimeStamp;
+    uint256 public lastCalledTimeStamp;
 
     // define category enum
     enum dataCategory { normal, traffic_data, incident}
@@ -47,11 +47,11 @@ contract DataStorage {
         // accumulate the dataIndex
         dataIndex++;
         // get current timestamp
-        currentTimeStamp = now;
+        lastCalledTimeStamp = now;
 
         // save info to the local datastruct
         DataStorageEvents[dataIndex] = DataStorageEvent(
-            currentTimeStamp,
+            lastCalledTimeStamp,
             contractVersion,
             dataIndex,
             dataCategory(_category),
