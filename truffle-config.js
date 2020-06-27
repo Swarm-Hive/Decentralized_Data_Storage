@@ -1,7 +1,7 @@
 /*
  * @Author: Zitian(Daniel) Tong
  * @Date: 2020-06-24 16:03:03
- * @LastEditTime: 2020-06-26 18:29:24
+ * @LastEditTime: 2020-06-26 18:37:48
  * @LastEditors: Zitian(Daniel) Tong
  * @Description:  configuration setting for deploy and set smart contract
  * @FilePath: /Decentralized_Data_Storage/truffle-config.js
@@ -15,6 +15,7 @@ const HDWalletProvider = require("truffle-hdwallet-provider");
 
 module.exports = {
   networks: {
+    // ropsten netowrk
     ropsten: {
       provider: function(){
         return new HDWalletProvider(
@@ -25,12 +26,15 @@ module.exports = {
       gasPrice: 25000000000,
       network_id: 3
     },
+    // local development
     development: {
       host: "127.0.0.1",
       port: 7545,
       network_id: "*" // Match any network id
     },
   },
+
+  // relative address
   contracts_directory: './src/contracts/',
   contracts_build_directory: './src/abis/',
 
