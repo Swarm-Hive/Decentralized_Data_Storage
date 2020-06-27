@@ -1,3 +1,6 @@
+# ignore env file
+.env
+
 # ignore system files
 .DS_Store
 
@@ -6,3 +9,4 @@
 
 # ignore abis generated at any level
 **/abis
+
