@@ -1,7 +1,7 @@
 /*
  * @Author: Zitian(Daniel) Tong
  * @Date: 2020-06-24 16:03:03
- * @LastEditTime: 2020-06-28 17:17:54
+ * @LastEditTime: 2020-06-28 22:40:57
  * @LastEditors: Zitian(Daniel) Tong
  * @Description:  configuration setting for deploy and set smart contract
  * @FilePath: /Decentralized_Data_Storage/truffle-config.js
@@ -9,9 +9,13 @@
 
 require('babel-register');
 require('babel-polyfill');
-require('dotenv').config();
+require('dotenv').config({ path:'./.env' })
 
 const HDWalletProvider = require("truffle-hdwallet-provider");
+
+console.log(process.env)
+console.log(process.env.MNEMONIC)
+console.log(process.env.INFURA_API_KEY_MAINNET_WSS)
 
 module.exports = {
   networks: {
