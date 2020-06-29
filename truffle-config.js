@@ -1,7 +1,7 @@
 /*
  * @Author: Zitian(Daniel) Tong
  * @Date: 2020-06-24 16:03:03
- * @LastEditTime: 2020-06-26 18:37:48
+ * @LastEditTime: 2020-06-28 17:17:54
  * @LastEditors: Zitian(Daniel) Tong
  * @Description:  configuration setting for deploy and set smart contract
  * @FilePath: /Decentralized_Data_Storage/truffle-config.js
@@ -20,11 +20,44 @@ module.exports = {
       provider: function(){
         return new HDWalletProvider(
           process.env.MNEMONIC,
-          process.env.INFURA_API_KEY
+          process.env.INFURA_API_KEY_ROPSTEN_HTTPS
         )
       },
       gasPrice: 25000000000,
       network_id: 3
+    },
+    // kovan network
+    kovan: {
+      provider: function(){
+        return new HDWalletProvider(
+          process.env.MNEMONIC,
+          process.env.INFURA_API_KEY_KOVAN_HTTPS
+        )
+      },
+      gasPrice: 25000000000,
+      network_id: 42
+    },
+    // rinkeby network
+    rinkeby: {
+      provider: function(){
+        return new HDWalletProvider(
+          process.env.MNEMONIC,
+          process.env.INFURA_API_KEY_RINKEBY_HTTPS
+        )
+      },
+      gasPrice: 25000000000,
+      network_id: 4
+    },
+    // goerli network
+    goerli: {
+      provider: function(){
+        return new HDWalletProvider(
+          process.env.MNEMONIC,
+          process.env.INFURA_API_KEY_GOERLI_HTTPS
+        )
+      },
+      gasPrice: 25000000000,
+      network_id: 5
     },
     // local development
     development: {
