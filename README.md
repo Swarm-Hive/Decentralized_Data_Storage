@@ -9,6 +9,10 @@ Welcome to our project, this is one of the basic test smart contracts to demo in
 
 2. [Install Ganache](https://www.trufflesuite.com/ganache), or ganache-cli, a command line version of ganache.
 
+3. Create your own .env file (name .env), and fill the API key and Mnemonic in .env. 
+   - To get an API key, go to [Infura](https://infura.io/)
+   - To get an wallet mnemonic, install chrome extension [metamask](https://metamask.io/)
+
 Note: if your node version is V14+, use '--skipDryRun' detailed reason can be seen on [issue #1](https://github.com/Swarm-Hive/Decentralized_Data_Storage/issues/1)
 
 ## Quick Start
