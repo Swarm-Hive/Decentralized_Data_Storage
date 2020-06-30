@@ -1,7 +1,7 @@
 '''
 @Author: Zitian(Daniel) Tong
 @Date: 2020-06-28 17:27:51
-@LastEditTime: 2020-06-29 16:48:38
+@LastEditTime: 2020-06-29 20:29:30
 @LastEditors: Zitian(Daniel) Tong
 @Description: a python script desgined for interacting with smart contracts
 @FilePath: /Decentralized_Data_Storage/src/scripts/interation.py
@@ -52,7 +52,7 @@ print('Nonce Index:',nonce)
 
 # build a transaction that invokes contract's function
 contract_tnx = contract.functions.broadcastData(
-    10,
+    1, 
     'test again',
 ).buildTransaction({
     'chainId': 3,
