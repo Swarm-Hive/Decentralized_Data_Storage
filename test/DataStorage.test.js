@@ -1,7 +1,7 @@
 /*
  * @Author: Zitian(Daniel) Tong
  * @Date: 2020-06-24 16:03:03
- * @LastEditTime: 2020-07-02 22:07:03
+ * @LastEditTime: 2020-07-03 12:12:41
  * @LastEditors: Zitian(Daniel) Tong
  * @Description: 
  * @FilePath: /Decentralized_Data_Storage/test/DataStorage.test.js
@@ -91,9 +91,6 @@ contract(DataStorage,([deployer, sender_1, sender_2, sender_3])=>{
             await datastorage.retrieveData(3).should.be.rejected;
             await datastorage.retrieveData(1000).should.be.rejected;
         })
-        
-
     })
-    
 
 });

@@ -1,7 +1,7 @@
 '''
 @Author: Zitian(Daniel) Tong
 @Date: 2020-06-28 17:27:51
-@LastEditTime: 2020-06-30 18:32:53
+@LastEditTime: 2020-07-03 16:11:02
 @LastEditors: Zitian(Daniel) Tong
 @Description: a python script desgined for interacting with smart contracts
 @FilePath: /Decentralized_Data_Storage/src/scripts/interaction.py
@@ -59,14 +59,14 @@ class SmartContractInteraction:
 
         # get nonce
         nonce = web3.eth.getTransactionCount(self.walletaddress)
-
+        print(nonce)
         # build a transaction that invokes contract's function
         contract_tnx = contract.functions.broadcastData(
             1, 
             msg,
         ).buildTransaction({
             'chainId': networkID,
-            'gas': 3000000,
+            'gas': 5000000,
             'gasPrice': web3.toWei(1, 'gwei'),
             'nonce': nonce,
         })
@@ -90,6 +90,19 @@ class SmartContractInteraction:
         hash_txn = web3.toHex(web3.keccak(signed_txn.rawTransaction))
         print(colored('Transaction Hash:', 'grey', 'on_green'),hash_txn)
     
+    def data_retrieve(self, networkID):
+        web3 = Web3(Web3.HTTPProvider(self.url))
+        contract = web3.eth.contract(address=self.contractaddress, abi=self.contractabi)
+
+        retrieveFunc = contract.functions['retrieveData']
+        try:
+            result = retrieveFunc(networkID).call()
+            print(colored('{status}'.format(status = 'CONTRACT.CALL: SUCCESS!' ), 'grey', 'on_green'), 
+                       'CONTRACT CALL SUCCESSFULLY RETIEVED!')
+            print(result)
+        except:
+            raise Exception(colored('{status}'.format(status = 'CONTRACT.CALL: FAIL!' ), 'grey', 'on_red'), 
+                       'Error Occured!')
 
 
 
@@ -98,7 +111,7 @@ if __name__ == '__main__':
      # find & load the .env file
     load_dotenv(find_dotenv())
 
-    infural_url = os.environ.get('INFURA_API_KEY_RINKEBY_HTTPS')    # load rinkeby testnet
+    infural_url = os.environ.get('INFURA_API_KEY_KOVAN_HTTPS')    # load rinkeby testnet
     wallet_address = os.environ.get('WALLET_PUBLIC_ADDRESS')        # load wallet address
     menemonic = os.environ.get('MNEMONIC')                          # load mnemonic
     private_key = os.environ.get('WALLET_PRIVATE_KEY')              # load private key
@@ -108,6 +121,7 @@ if __name__ == '__main__':
     dataStorage = SmartContractInteraction(infural_url, private_key, menemonic, contract_address, wallet_address, 'test')
     dataStorage.check_web3_connection()
     dataStorage.load_contract_abi()
-    dataStorage.contract_interaction('test-test-test', 4)
+    dataStorage.contract_interaction('5(8)G team rocks', 42)
+    dataStorage.data_retrieve(1)
 
     
