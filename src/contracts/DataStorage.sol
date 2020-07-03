@@ -1,13 +1,15 @@
 /*
  * @Author: Zitian(Daniel) Tong
  * @Date: 2020-06-24 16:03:03
- * @LastEditTime: 2020-06-28 17:23:22
+ * @LastEditTime: 2020-07-02 22:02:18
  * @LastEditors: Zitian(Daniel) Tong
  * @Description: Smart Contract Code
  * @FilePath: /Decentralized_Data_Storage/src/contracts/DataStorage.sol
  */
 
 pragma solidity ^0.5.0;
+pragma experimental ABIEncoderV2;
+
 
 // contract code
 contract DataStorage {
@@ -27,7 +29,7 @@ contract DataStorage {
         dataCategory category;
         string data;
     }
-
+    
     // mapping address to DataStorageEvents
     mapping(uint256 => DataStorageEvent) public DataStorageEvents;
 
@@ -44,7 +46,8 @@ contract DataStorage {
         dataCategory category,
         string data
     );
-
+    
+    // send data to ETH blockchain
     function broadcastData(
         uint256 _category,  // category of data
         string memory _data             // data string
@@ -75,6 +78,19 @@ contract DataStorage {
             DataStorageEvents[dataIndex].category,
             DataStorageEvents[dataIndex].data
         );
+    }
+
+    // retrieve the from the network
+    function retrieveData(
+        uint256 _index
+    ) public view returns(
+        DataStorageEvent memory  historyData
+    ) {
+        // require the dataindex is within the valid range [0, mostcurrent]
+        require(_index >= 0 && _index <= dataIndex, "Index of data should be in a vaild range");
+
+        //return DataStorageEvents[_index];
+        return DataStorageEvents[_index];
     }
 
 }
